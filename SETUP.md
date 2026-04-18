@@ -156,7 +156,22 @@ This tells EdgeCrab about the Arduino hardware interface and known serial ports.
 
 ---
 
-## 9. Verify
+## 9. Enable Camera Vision (optional)
+
+**Important concept:** EC cannot detect attached hardware on its own. It only knows about tools explicitly given to it via MCP. Even if a USB camera appears at `/dev/video0`, EC will not know it exists unless a tool exposes it. This applies to any hardware — cameras, sensors, etc.
+
+Install OpenCV:
+```bash
+pip3 install opencv-python --break-system-packages
+```
+
+The MCP server already includes `capture_image` and `capture_frames` tools — no extra config needed. Plug in any UVC-compatible USB camera and restart EC.
+
+Tested with a Logitech USB webcam on `/dev/video0`.
+
+---
+
+## 10. Verify
 
 Start a new EdgeCrab session:
 ```bash
@@ -165,6 +180,7 @@ edgecrab chat
 
 Ask: "what tools do you have available?" — should list the arduino MCP tools.
 Ask: "list connected boards" — should call `list_boards` and return the Uno on `/dev/ttyACM0`.
+Ask: "capture an image and describe what you see" — should call `capture_image` and analyze the frame.
 
 ---
 
@@ -178,3 +194,5 @@ Ask: "list connected boards" — should call `list_boards` and return the Uno on
 | `upload_sketch` | Compiles and uploads to the board |
 | `serial_send` | Sends a command over serial, returns response |
 | `serial_read` | Reads serial output for N seconds |
+| `capture_image` | Grabs a single frame from the USB camera — EC can analyze the image directly |
+| `capture_frames` | Captures multiple frames over a set duration — use to detect blinking, motion, or state changes |
