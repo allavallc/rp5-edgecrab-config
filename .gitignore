@@ -1,0 +1,36 @@
+# Secrets and keys
+.env
+*.env
+*.key
+*.pem
+*.p12
+*.pfx
+*_secret*
+*_token*
+*api_key*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# EdgeCrab runtime state (personal/machine-specific)
+state.db*
+history/
+sessions/
+cache/
+logs/
+tmp/
+honcho/
+checkpoints/
+sandboxes/
+update-check.json
+auth.lock

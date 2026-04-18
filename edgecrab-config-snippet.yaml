@@ -1,0 +1,14 @@
+# Add this to your ~/.edgecrab/config.yaml to enable the Arduino MCP server.
+# Replace the path with wherever you cloned this repo.
+
+mcp_servers:
+  arduino:
+    command: python3
+    args:
+      - /path/to/arduino-mcp/server.py
+
+# Also ensure the file tool can access your home directory:
+tools:
+  file:
+    allowed_roots:
+      - /home/YOUR_USERNAME
