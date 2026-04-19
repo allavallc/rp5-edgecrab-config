@@ -4,6 +4,13 @@ Paste into ~/.edgecrab/memories/MEMORY.md
 
 ---
 
+MCP Server:
+- An MCP server is running at /home/YOUR_USERNAME/arduino-mcp/server.py
+- It exposes 8 tools in the mcp-arduino toolset: list_boards, list_cores, compile_sketch, upload_sketch, serial_send, serial_read, capture_image, capture_frames
+- Always prefer these MCP tools over running arduino-cli or python scripts directly
+- capture_image: captures a single frame from the USB camera at /dev/video0 — use to visually verify hardware state (e.g. is LED on?)
+- capture_frames: captures multiple frames over a duration — use to detect blinking, motion, or state changes
+
 Arduino Hardware Interface:
 - /dev/ttyAMA10 is the Pi's built-in GPIO UART — always present, always shows as "Unknown" in board list, not a connected device, ignore it.
 - arduino-cli location: /home/YOUR_USERNAME/bin/arduino-cli (or wherever installed)
