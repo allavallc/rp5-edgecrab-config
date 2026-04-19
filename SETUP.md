@@ -184,6 +184,20 @@ Ask: "capture an image and describe what you see" — should call `capture_image
 
 ---
 
+## Visual Analysis Pattern (key for robotics)
+
+The camera is the robot's feedback loop. When verifying a visual condition — "is the LED on?", "is a person present?", "is the robot on grass?" — never rely on a single frame. The correct pattern:
+
+1. Call `capture_frames` over a window of time (3–5 seconds)
+2. Analyze each frame with EC's `vision_analyze` tool
+3. Look for the condition to hold consistently across multiple frames
+4. Only conclude the condition is met when confirmed repeatedly
+5. If not confirmed within a timeout, report failure — don't assume
+
+This loop-until-confirmed approach is fundamental to reliable robotics vision.
+
+---
+
 ## MCP Tools Available
 
 | Tool | Description |
